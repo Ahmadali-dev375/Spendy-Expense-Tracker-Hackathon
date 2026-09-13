@@ -1,359 +1,817 @@
-# Spendy — Your Expenditure Partner
+# 💰 Spendy — Your Expenditure Partner
 
-A lightweight, offline-first personal finance tracker built to help students and young adults track expenditures, visualize spending trends, and maintain financial discipline with zero friction.
+> A modern personal finance tracker built during the **National Agentic AI Hackathon 2025 — Track 2**, focused on simple money management, transaction tracking, financial visualization, and flexible browser-local to cloud data synchronization.
 
-Developed during the **National Agentic AI Hackathon 2025** (Track 2) by **Team A²** under the leadership of **Ahmad Ali**.
+**Team:** Team A²  
+**Team Leader & Developer:** Ahmad Ali  
+**Event:** National Agentic AI Hackathon 2025 — Track 2
 
----
-
-### Project Links
-- **Live Demo**: [Deploying to Vercel — Coming Soon](#) <!-- Replace with https://spendy.vercel.app -->
-- **Pitch Deck / Presentation**: [docs/Spendy-Hackathon-Presentation.pdf](docs/Spendy-Hackathon-Presentation.pdf)
-- **GitHub Repository**: [https://github.com/your-username/spendy](https://github.com/your-username/spendy)
-
----
-
-## Overview
-
-Managing day-to-day finances shouldn't require complex accounting software or mandatory account creation. **Spendy** is designed as a streamlined, responsive personal finance assistant that operates fully in the browser out of the box. Users can immediately track expenses and income, view categorized statistics, and switch seamlessly to cloud synchronization via Google Authentication whenever they choose.
+[🌐 Live Demo](https://spendy-expense-tracker.netlify.app) •
+[📊 Pitch Deck](docs/Spendy_Pitch_Deck_Innovista.pptx) •
+[📄 Project Document](docs/Spendy_Your_Expenditure_Partner_Document.pdf)
 
 ---
 
-## The Problem
+## 🎬 Preview
 
-Financial literacy and personal budgeting remain significant challenges across Pakistan, particularly among university students and young professionals. Key challenges include:
+<p align="center">
+  <img src="assets/spendy-preview.gif" alt="Spendy app preview" width="100%">
+</p>
 
-- **Lack of Early Financial Habits**: Personal money management is rarely part of standard academic curricula, leaving students to navigate budgeting through trial and error.
-- **High Barrier to Entry**: Many existing finance apps demand extensive onboarding, mandatory phone numbers, or recurring subscription fees before offering basic functionality.
-- **Privacy & Connectivity Concerns**: Users often hesitate to share sensitive financial records with cloud-first apps or need an expense tracker that works reliably in low-connectivity environments.
-
-Spendy was conceived through direct observations of student life in Pakistan, aiming to deliver a no-friction, privacy-respecting tool that makes spending tracking accessible to anyone with a browser.
+> The preview highlights Spendy's primary screens, including the dashboard, transaction management, statistics, and settings experience.
 
 ---
 
-## Our Approach
+## 📌 Overview
 
-Spendy balances instantaneous offline utility with modern cloud capabilities:
-1. **Zero-Friction Onboarding**: Users can begin recording income and expenses immediately using local browser storage—no sign-up required.
-2. **On-Demand Cloud Sync**: Users who want cross-device access can authenticate with Google at any time; their existing offline transactions are automatically migrated into the cloud in an atomic batch.
-3. **Actionable Visuals**: Spending data is transformed into intuitive charts (pie breakdown, monthly cash flow, and category overviews) so users quickly understand where their money goes.
-4. **Localization-Ready**: Out of the box support for 166 world currencies, prominently including Pakistani Rupee (PKR - ₨), with localized formatting.
+**Spendy** is a responsive personal finance tracker designed to help users record income and expenses, categorize transactions, understand spending patterns, and monitor their overall financial activity through a clean and accessible interface.
 
----
+The project was originally created during the **National Agentic AI Hackathon 2025** and was later refined into a working web application.
 
-## Key Features
+Spendy provides two approaches for storing financial information:
 
-The following features are **fully implemented and operational** in the codebase:
+- **Browser-Local Mode** — start tracking immediately without creating an account.
+- **Google Cloud Sync** — sign in with Google and synchronize financial records through Firebase Firestore.
 
-### 1. Dual-Mode Data Architecture
-- **Offline-First Storage**: Operates entirely within `localStorage` for complete offline privacy and speed.
-- **One-Click Cloud Sync**: Authenticate with Google to automatically batch-migrate local transactions to Firebase Firestore (`users/{uid}/transactions`) and activate real-time synchronization.
+The current version is deployed as a **web application**, so an internet connection is required to initially access the hosted website.
 
-### 2. Transaction Management (CRUD)
-- **Add Transactions**: Record income or expense with category selection, date picker, amount validation, and optional notes.
-- **Edit Transactions**: Update amount, category, date, or description via a pre-filled modal dialog.
-- **Delete Transactions**: Remove individual entries with immediate state and database/storage updates.
-- **Categorization**: Group transactions into 6 standard categories: *Food, Travel, Bills, Shopping, Salary, Other*.
+Although Browser-Local Mode stores transaction data inside the user's browser using `localStorage`, the current web version should **not be considered a fully offline application**.
 
-### 3. Interactive Financial Dashboard
-- **Metric Cards**: Real-time calculation of **Total Balance**, **Total Income**, and **Total Expenses**.
-- **Recent Transactions Feed**: Visual activity feed with category-specific Lucide icons and color-coded transaction amounts.
-- **Expense Overview Chart**: Horizontal bar chart summarizing spending by category for fast visual comparison.
-
-### 4. Advanced Statistics & Visualizations
-- **Income vs. Expense Chart**: Monthly comparative bar chart tracking cash flow trends over time.
-- **Category Spend Breakdown**: Donut chart with interactive hover tooltips and dynamic center label displaying total spend per category.
-
-### 5. Multi-Currency Support
-- Searchable currency selector supporting **166 world currencies**, including:
-  - **PKR** (`₨` - Pakistani Rupee)
-  - **USD** (`$` - US Dollar)
-  - **EUR** (`€` - Euro)
-  - **GBP** (`£` - British Pound)
-  - **SAR** (`ر.س` - Saudi Riyal), **AED** (`د.إ` - UAE Dirham), and more.
-- Persistent currency preference stored across sessions and reflected across all summary cards, charts, and transaction rows.
-
-### 6. Modern User Experience & Accessibility
-- **Light & Dark Themes**: System-aware theme toggling with smooth transitions via `next-themes`.
-- **Responsive Layout**: Collapsible sidebar navigation for desktops and sliding mobile drawer with touch support.
-- **Optimized Bundle Delivery**: Code-split dialogs and charts using `next/dynamic` to minimize initial bundle size.
+A future native/mobile version could provide true offline availability by storing the application itself on the device and synchronizing with Firebase only when internet access is available.
 
 ---
 
-## Hackathon Context
+## 🎯 The Problem
 
-| Field | Details |
-|---|---|
-| **Event** | National Agentic AI Hackathon 2025 |
-| **Track** | Track 2 |
-| **Team** | Team A² |
-| **Team Leader** | Ahmad Ali |
-| **Role** | Concept design, UI engineering, state architecture, and Firebase integration |
+Managing money is a common challenge, particularly for students and young adults.
 
----
+Personal finance habits are often not formally taught, and many people struggle to consistently answer simple questions such as:
 
-## What Makes Spendy Different
+- Where did my money go this month?
+- How much did I spend on food, travel, or bills?
+- How much income did I receive?
+- What is my current balance?
+- Which category consumes most of my spending?
 
-- **No Lock-In, No Friction**: Unlike typical finance platforms that block usage behind sign-up forms, Spendy gives users immediate access to all core features.
-- **Smooth Upgrade Path**: Going from local storage to cloud sync does not wipe local data. The application executes a transactional migration batch upon first Google sign-in.
-- **Clean, Purposeful Aesthetics**: Built with high-contrast typography (Poppins for headlines, PT Sans for data tables) and refined shadcn/ui components for a premium feel.
+As a university student, I observed this problem around me and wanted to create a simple solution that helps users better understand their financial activity without introducing unnecessary complexity.
 
 ---
 
-## Screenshots
+## 💡 Our Approach
 
-<!-- Place screenshots in docs/screenshots/ and link them here -->
+Spendy focuses on three main principles:
 
-| Landing & Onboarding | Main Dashboard |
-| :---: | :---: |
-| ![Landing Page Placeholder](docs/screenshots/landing-page.png) | ![Dashboard Placeholder](docs/screenshots/dashboard.png) |
+### 1. Simple Entry
 
-| Transactions Management | Financial Statistics |
-| :---: | :---: |
-| ![Transactions Table Placeholder](docs/screenshots/transactions.png) | ![Statistics Charts Placeholder](docs/screenshots/statistics.png) |
+Users can begin recording transactions without mandatory registration or complicated onboarding.
 
-> *Screenshots will be populated following presentation asset export.*
+### 2. Useful Financial Visibility
 
----
+Dashboard cards, statistics, charts, and transaction history help users understand where their money is going.
 
-## Technology Stack
+### 3. Optional Cloud Synchronization
 
-### Frontend & Framework
-- **Framework**: [Next.js 15.3.8](https://nextjs.org/) (App Router, Turbopack)
-- **Core Library**: [React 18.3.1](https://react.dev/)
-- **Language**: [TypeScript 5](https://www.typescriptlang.org/) (Strict Mode)
+Users who want cloud synchronization can authenticate using Google and store their financial records in Firebase Firestore.
 
-### Styling & UI
-- **CSS Framework**: [Tailwind CSS 3.4.1](https://tailwindcss.com/)
-- **UI Components**: [shadcn/ui](https://ui.shadcn.com/) built on [Radix UI Primitives](https://www.radix-ui.com/)
-- **Icons**: [Lucide React 0.475.0](https://lucide.dev/)
-- **Theming**: [next-themes 0.3.0](https://github.com/pacocoursey/next-themes)
-
-### Visualization & Utilities
-- **Charts**: [Recharts 2.15.1](https://recharts.org/)
-- **Date Handling**: [date-fns 3.6.0](https://date-fns.org/) & [react-day-picker 8.10.1](https://daypicker.dev/)
-- **Form Management**: [React Hook Form 7.54.2](https://react-hook-form.com/)
-- **Schema Validation**: [Zod 3.24.2](https://zod.dev/)
-
-### Backend & Cloud
-- **SDK**: [Firebase Modular SDK 11.9.1](https://firebase.google.com/)
-- **Authentication**: Firebase Auth (Google Sign-In popup)
-- **Database**: Cloud Firestore (real-time collections, batch writes)
-
-### AI & Extensibility (Prototyped / Scaffolded)
-- **AI Tooling**: [Genkit 1.20.0](https://firebase.google.com/docs/genkit) (`@genkit-ai/google-genai` with Gemini 2.5 Flash configuration)
-
----
-
-## Architecture / Project Structure
+This creates a natural progression:
 
 ```text
+Start Locally
+     ↓
+Track Transactions
+     ↓
+Understand Spending
+     ↓
+Optionally Sign In
+     ↓
+Synchronize with Firebase
+```
+
+---
+
+## ✨ Key Features
+
+### 💳 Transaction Management
+
+Spendy supports complete transaction management:
+
+- Add income transactions
+- Add expense transactions
+- Edit existing transactions
+- Delete transactions
+- Select transaction dates
+- Add optional notes
+- Categorize transactions
+- View transactions grouped chronologically
+- Filter transactions by type
+- Filter transactions by category
+
+### Current Categories
+
+- Food
+- Travel
+- Bills
+- Shopping
+- Salary
+- Other
+
+---
+
+## 📊 Financial Dashboard
+
+The dashboard dynamically calculates and displays:
+
+- **Total Balance**
+- **Total Income**
+- **Total Expenses**
+- **Recent Transactions**
+- **Expense Overview**
+
+This provides users with an immediate summary of their current financial position.
+
+---
+
+## 📈 Statistics & Financial Visualization
+
+Spendy includes interactive financial visualizations such as:
+
+- Income vs. Expense comparison
+- Monthly financial trends
+- Category spending breakdown
+- Expense overview charts
+- Donut / pie visualizations
+- Category-based spending summaries
+
+Charts are powered by **Recharts**.
+
+---
+
+## 💱 Multi-Currency Support
+
+Spendy supports **166 world currencies**.
+
+Examples include:
+
+- **PKR** — Pakistani Rupee
+- **USD** — US Dollar
+- **EUR** — Euro
+- **GBP** — British Pound
+- **SAR** — Saudi Riyal
+- **AED** — UAE Dirham
+- and many more
+
+Users can search for and select a preferred currency from the Settings screen.
+
+The selected currency is persisted in browser storage and applied throughout financial values displayed by the application.
+
+---
+
+## 🔄 Browser-Local & Cloud Data Modes
+
+### 🖥 Browser-Local Mode
+
+Users can begin using Spendy without creating an account.
+
+Transactions are stored inside:
+
+```
+window.localStorage
+```
+
+This provides:
+
+- immediate access
+- no mandatory registration
+- browser-local transaction persistence
+- fast transaction retrieval
+- local control over records
+
+### Important Note About Offline Usage
+
+Browser-local storage does **not** mean the currently deployed web application is fully offline.
+
+The hosted Spendy application still requires internet access to initially load through the browser.
+
+Once the application is loaded, transaction information in Browser-Local Mode is managed locally inside that browser profile.
+
+A future Android, iOS, desktop, or properly packaged offline application could provide complete offline availability.
+
+---
+
+### ☁️ Google Cloud Sync
+
+Users can optionally choose **Sync with Google**.
+
+Spendy then uses:
+
+- Firebase Authentication
+- Google Sign-In
+- Cloud Firestore
+- Firestore real-time listeners
+- User-specific Firebase records
+
+Existing browser-local transactions can be migrated into the authenticated user's Firestore account.
+
+Cloud transactions are stored under a user-specific structure such as:
+
+```
+users/{uid}/transactions
+```
+
+Authentication and Firestore use the same Firebase application instance.
+
+---
+
+## 🔁 Data Flow
+
+```
+User Opens Spendy
+        │
+        ├── Browser-Local Mode
+        │       │
+        │       ├── No account required
+        │       │
+        │       └── Transactions stored in localStorage
+        │
+        └── Google Cloud Sync
+                │
+                ├── Google Authentication
+                │
+                ├── Existing local transactions checked
+                │
+                ├── Local records migrated when required
+                │
+                └── Real-time Firestore synchronization
+```
+
+---
+
+## 🏆 Hackathon Context
+
+| Field | Details |
+| ---------------- | --------------------------------------------------- |
+| **Event**        | National Agentic AI Hackathon 2025                  |
+| **Track**        | Track 2                                             |
+| **Project**      | Spendy — Your Expenditure Partner                   |
+| **Team**         | Team A²                                             |
+| **Team Leader**  | Ahmad Ali                                           |
+| **Project Type** | Personal Finance / Expense Tracking Web Application |
+
+Spendy began as a hackathon prototype focused on making personal financial tracking simpler and more accessible.
+
+---
+
+## 🚀 What Makes Spendy Different
+
+### Zero-Friction Entry
+
+Users can begin using the core financial tracking experience without first creating an account.
+
+### Local-to-Cloud Upgrade Path
+
+Users can start with browser-local storage and later choose Google authentication and Firebase synchronization.
+
+### Financial Visualization
+
+Instead of displaying only a transaction list, Spendy transforms financial information into charts, statistics, and dashboard summaries.
+
+### Multi-Currency Support
+
+The application supports users across a wide range of currencies while providing full support for **PKR** and many other major currencies.
+
+### Clean Responsive Interface
+
+Spendy includes:
+
+- responsive navigation
+- desktop sidebar
+- mobile-friendly layout
+- reusable interface components
+- light and dark themes
+- accessible dialogs and controls
+- responsive statistics screens
+
+---
+
+## 🛠 Technology Stack
+
+### Frontend & Framework
+
+- **Next.js 15.3.8**
+- **React 18.3.1**
+- **TypeScript**
+- **Next.js App Router**
+
+### Styling & UI
+
+- **Tailwind CSS**
+- **shadcn/ui**
+- **Radix UI**
+- **Lucide React**
+- **next-themes**
+
+### Data Visualization
+
+- **Recharts**
+
+### Forms & Validation
+
+- **React Hook Form**
+- **Zod**
+
+### Dates & Utilities
+
+- **date-fns**
+- **react-day-picker**
+
+### Backend & Cloud
+
+- **Firebase**
+- **Firebase Authentication**
+- **Google Sign-In**
+- **Cloud Firestore**
+
+### Data Persistence
+
+- Browser `localStorage`
+- Cloud Firestore
+- Real-time Firestore synchronization
+
+### AI / Experimental Foundation
+
+- **Genkit**
+- **Google GenAI / Gemini configuration**
+
+> The Genkit/Gemini setup currently exists as an experimental/scaffolded foundation and is **not yet connected to the primary user-facing financial workflow**.
+
+### Deployment & Version Control
+
+- **Git**
+- **GitHub**
+- **Netlify**
+
+---
+
+## 🏗 Project Structure
+
+```
 Spendy/
+│
+├── assets/
+│   └── spendy-preview.gif
+│
+├── docs/
+│   ├── Spendy_Pitch_Deck_Innovista.pptx
+│   └── Spendy_Your_Expenditure_Partner_Document.pdf
+│
 ├── src/
-│   ├── ai/                      # Genkit AI configuration (Gemini 2.5 Flash)
+│   │
+│   ├── ai/
 │   │   ├── dev.ts
 │   │   └── genkit.ts
-│   ├── app/                     # Next.js 15 App Router
-│   │   ├── (app)/               # Authenticated / Application shell route group
-│   │   │   ├── dashboard/       # Dashboard view (overview metrics & charts)
-│   │   │   ├── statistics/      # Deep-dive analytics (monthly & category charts)
-│   │   │   ├── transactions/    # Full transactions table & filtering
-│   │   │   ├── settings/        # Currency selector, theme & cloud sync controls
-│   │   │   ├── layout.tsx       # Sidebar, Header, Settings & Transaction providers
-│   │   │   └── loading.tsx      # Route-level loading skeleton
-│   │   ├── globals.css          # Tailwind CSS variables & design tokens
-│   │   ├── layout.tsx           # Root HTML layout, font preloads, theme & auth providers
-│   │   └── page.tsx             # Landing page (choice between Local Mode and Google Sync)
-│   ├── components/              # Modular UI components
-│   │   ├── dashboard/           # Dashboard-specific widgets (add dialog, charts, feeds)
-│   │   ├── statistics/          # Recharts visualizations (income/expense & donut charts)
-│   │   ├── transactions/        # Data table, filters, and edit dialogs
-│   │   ├── ui/                  # shadcn/ui primitive components (Radix UI wrappers)
-│   │   ├── sidebar-layout.tsx   # Responsive application shell and header
-│   │   └── theme-toggle.tsx     # Light/Dark mode switcher
-│   ├── context/                 # Application State Management
-│   │   ├── data-sync.ts         # Atomic batch migration from localStorage to Firestore
-│   │   ├── settings-context.tsx # Currency preference state and persistence
-│   │   └── transaction-context.tsx # Central store handling local vs. Firestore CRUD
-│   ├── firebase/                # Firebase Client SDK integration
-│   │   ├── auth.ts              # Google authentication helpers
-│   │   ├── config.ts            # Client SDK connection options
-│   │   ├── index.ts             # App initialization and SDK getters
-│   │   ├── provider.tsx         # React Context providing Auth and Firestore instances
-│   │   └── user-service.ts      # User profile persistence in Firestore
-│   ├── hooks/                   # Custom React hooks (useMobile, useToast)
-│   └── lib/                     # Utilities, static definitions, and data types
-│       ├── currencies.ts        # 166 ISO currency definitions
-│       ├── data.ts              # Category definitions and mock templates
-│       ├── types.ts             # Core Transaction interface
-│       └── utils.ts             # Tailwind class merge & currency formatting helpers
-├── components.json              # shadcn/ui configuration
-├── next.config.ts               # Next.js build & remote image configuration
-├── package.json                 # Project dependencies and npm scripts
-├── package-lock.json            # Deterministic lockfile
-├── postcss.config.mjs           # PostCSS configuration
-├── tailwind.config.ts           # Tailwind typography, colors, and keyframe animations
-└── tsconfig.json                # TypeScript compiler settings
+│   │
+│   ├── app/
+│   │   │
+│   │   ├── (app)/
+│   │   │   ├── dashboard/
+│   │   │   ├── icon-options/
+│   │   │   ├── settings/
+│   │   │   ├── statistics/
+│   │   │   ├── transactions/
+│   │   │   ├── layout.tsx
+│   │   │   └── loading.tsx
+│   │   │
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── logo.svg
+│   │   └── page.tsx
+│   │
+│   ├── components/
+│   │   ├── dashboard/
+│   │   ├── statistics/
+│   │   ├── transactions/
+│   │   └── ui/
+│   │
+│   ├── context/
+│   │   ├── data-sync.ts
+│   │   ├── settings-context.tsx
+│   │   └── transaction-context.tsx
+│   │
+│   ├── firebase/
+│   │   ├── firestore/
+│   │   ├── auth.ts
+│   │   ├── config.ts
+│   │   ├── index.ts
+│   │   ├── provider.tsx
+│   │   └── user-service.ts
+│   │
+│   ├── hooks/
+│   │
+│   └── lib/
+│       ├── currencies.ts
+│       ├── data.ts
+│       ├── types.ts
+│       └── utils.ts
+│
+├── .gitignore
+├── components.json
+├── next.config.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── tailwind.config.ts
+└── tsconfig.json
 ```
 
 ---
 
-## Data & Persistence
-
-Spendy handles data through a dual-strategy architecture managed by `TransactionProvider`:
-
-```mermaid
-graph TD
-    A[User Opens Spendy] --> B{Storage Choice}
-    B -->|Local Storage| C[Browser localStorage]
-    C --> D[CRUD operations in memory + localStorage]
-    B -->|Google Cloud Sync| E[Firebase Auth Popup]
-    E --> F[Check local transactions]
-    F -->|Exists| G[Batch Write to Firestore: users/{uid}/transactions]
-    F -->|Empty| H[Attach Firestore onSnapshot Listener]
-    G --> H
-    H --> I[Real-time bidirectional sync across devices]
-```
-
-1. **Local Mode**:
-   - Stored in `window.localStorage` under the key `'transactions'`.
-   - Dates are stored in ISO format and hydrated into JavaScript `Date` objects on load.
-   - IDs are generated client-side using `crypto.randomUUID()`.
-2. **Cloud Mode**:
-   - Transactions are stored under the Firestore path: `/users/{userId}/transactions/{transactionId}`.
-   - Real-time updates are listened to via Firestore `onSnapshot`.
-   - Creation, update, and deletion are handled asynchronously through modular Firestore methods (`addDoc`, `updateDoc`, `deleteDoc`).
-
----
-
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) version **20.x** or higher
-- [npm](https://www.npmjs.com/) (bundled with Node.js)
 
-### Installation
+Make sure you have installed:
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-username/spendy.git
-   cd spendy
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-
-3. **Run the local development server**:
-   ```bash
-   npm run dev
-   ```
-
-4. **Open in browser**:
-   Navigate to [http://localhost:9010](http://localhost:9010) (or the port indicated in your console).
-
-### Available Scripts
-
-- `npm run dev`: Starts the Next.js development server with Turbopack on port 9010.
-- `npm run build`: Compiles the production build.
-- `npm run start`: Runs the built production application on port 9010.
-- `npm run typecheck`: Validates TypeScript types across the codebase without emitting files.
-- `npm run lint`: Runs ESLint checks.
+- Node.js 20.x or newer
+- npm
+- Git
 
 ---
 
-## Environment Variables
+### 1. Clone the Repository
 
-For local development and testing, Spendy functions immediately with local storage without any environment variables.
-
-When deploying to production with custom Firebase projects or enabling Genkit AI features, provide the following variables in a `.env.local` file:
-
-```bash
-# Firebase Client Configuration
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
-NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
-NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-auth-domain.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-
-# Optional: Google Gemini API Key (for Genkit Flows)
-GEMINI_API_KEY=your-gemini-api-key
+```
+git clone https://github.com/Ahmadali-dev375/Spendy-Expense-Tracker-Hackathon.git
 ```
 
-> *Note: Never commit `.env` or `.env.local` files containing real production credentials to public repositories.*
+---
+
+### 2. Enter the Project Directory
+
+```
+cd Spendy-Expense-Tracker-Hackathon
+```
 
 ---
 
-## Hackathon Materials
+### 3. Install Dependencies
 
-Presentations, pitch documents, and competition submissions are located in the `docs/` folder:
-
-- **Presentation Slide Deck (PDF)**: `docs/Spendy-Hackathon-Presentation.pdf`
-- **Presentation Slide Deck (PPTX)**: `docs/Spendy-Hackathon-Presentation.pptx`
-- **Screenshots & Media**: `docs/screenshots/`
-- **Competition Submission Form**: `docs/submission/`
+```
+npm install
+```
 
 ---
 
-## Roadmap
+### 4. Start the Development Server
 
-The features below represent the **future vision** conceived during the National Agentic AI Hackathon 2025:
+```
+npm run dev
+```
 
-- [ ] **SMS & Banking Notification Parser**: Automatically extract transaction amounts, merchants, and dates from incoming bank and mobile wallet notifications (e.g. Easypaisa, JazzCash, local banks) with user consent.
-- [ ] **Mobile Distribution**: Package the application for Android and release on the Google Play Store using Capacitor or React Native.
-- [ ] **AI-Powered Financial Insights**: Connect the scaffolded Genkit / Gemini 2.5 Flash integration to generate proactive monthly budgeting advice, detect recurring unnecessary subscriptions, and provide personalized savings tips.
-- [ ] **Custom Categories & Budgets**: Allow users to define custom expenditure categories and set monthly spending caps with alert indicators.
-- [ ] **Export & Reporting**: Support exporting financial data to CSV and generating downloadable PDF spending reports.
+Then open the local development URL displayed in your terminal.
 
----
-
-## Firebase Studio & Development Process
-
-During the hackathon, **Firebase Studio** was utilized to accelerate initial prototyping and component scaffolding. 
-
-This experience offered valuable takeaways regarding modern AI-assisted software engineering:
-- **Accelerated Velocity**: AI scaffolding rapidly generated UI component templates and initial wireframe layouts, drastically reducing time-to-first-prototype.
-- **Critical Role of Developer Oversight**: While AI accelerated boilerplate generation, manual architectural decisions were critical for:
-  - Resolving routing conflicts in Next.js App Router (e.g. separating the landing page from the nested `(app)` group).
-  - Designing a robust dual-storage pattern (localStorage with atomic Firestore batch migration).
-  - Correcting hydration and client-side rendering boundaries for dynamic charting libraries.
-  - Ensuring strong TypeScript types across data context boundaries.
+The current development configuration uses port `9010` where specified by the project scripts.
 
 ---
 
-## Limitations
+## 📜 Available Scripts
 
-As a hackathon prototype, Spendy has several documented limitations:
-- **Fixed Category Set**: Categories are currently restricted to the 6 predefined types (`Food`, `Travel`, `Bills`, `Shopping`, `Salary`, `Other`).
-- **Single-Wallet Model**: Multi-account / multi-wallet tracking (e.g., separating Bank Account vs. Cash in Hand) is not yet implemented.
-- **Client-Side Firebase Keys**: Firebase client configuration is embedded in source code rather than driven by environment variables.
-- **Static Comparison Metric**: The "+0% from last month" label on the dashboard balance card is currently a static placeholder.
-- **Genkit AI Integration Inactive**: Genkit and Gemini packages are configured in `src/ai/genkit.ts` but are not yet wired into the user interface.
+### Development
+
+```
+npm run dev
+```
+
+Starts the Next.js development server.
+
+### Production Build
+
+```
+npm run build
+```
+
+Creates the production application build.
+
+### Production Server
+
+```
+npm run start
+```
+
+Runs the built application locally.
+
+### Type Checking
+
+```
+npm run typecheck
+```
+
+Validates TypeScript types without emitting build files.
+
+### Linting
+
+```
+npm run lint
+```
+
+Runs the configured lint checks.
 
 ---
 
-## Deployment
+## 📚 Hackathon Materials
 
-Spendy is optimized for zero-configuration deployment to [Vercel](https://vercel.com):
+The original project material is included directly inside this repository.
 
-1. Import the GitHub repository into Vercel.
-2. Ensure Framework Preset is set to **Next.js**.
-3. Build command: `npm run build`.
-4. Output directory: `.next`.
-5. **Firebase Domain Configuration**: If using Firebase Authentication, add your Vercel deployment domain (e.g., `spendy.vercel.app`) to:
-   - **Firebase Console** &rarr; **Authentication** &rarr; **Settings** &rarr; **Authorized Domains**.
+### 📊 Spendy Pitch Deck
 
----
+[**Open / Download Spendy Pitch Deck**](docs/Spendy_Pitch_Deck_Innovista.pptx)
 
-## Author / Team
+> GitHub may download the PowerPoint file instead of rendering it directly in the browser.
 
-- **Team**: Team A²
-- **Team Leader**: **Ahmad Ali**
-- **Event**: National Agentic AI Hackathon 2025 (Track 2)
+### 📄 Spendy Project Document
+
+[**Open Spendy — Your Expenditure Partner Project Document**](docs/Spendy_Your_Expenditure_Partner_Document.pdf)
+
+The PDF contains additional documentation related to the original hackathon project, concept, and presentation.
 
 ---
 
-## License
+## 🔥 Firebase Studio & Development Process
 
-This project currently has no explicit open-source license. All rights are reserved by the original authors. A standard open-source license (such as MIT) may be added in a future release.
+During the hackathon, **Firebase Studio** was used to accelerate early prototyping, interface scaffolding, and initial application development.
+
+This experience demonstrated both the potential and limitations of AI-assisted software engineering.
+
+### Accelerated Development
+
+Firebase Studio helped accelerate:
+
+- early UI creation
+- component scaffolding
+- application structure
+- initial Firebase integration
+- prototype generation
+- rapid experimentation
+
+This reduced the time required to move from an initial concept to a functional prototype.
+
+---
+
+### Developer Oversight
+
+AI-assisted scaffolding still required manual development, debugging, architecture decisions, and technical understanding.
+
+Important work included:
+
+- resolving Next.js App Router conflicts
+- separating the landing page from the nested `(app)` application routes
+- designing browser-local and Firestore data handling
+- implementing local-to-cloud transaction migration
+- correcting hydration and client-rendering issues
+- managing dynamic chart components
+- refining Firebase Authentication
+- reviewing Firestore integration
+- debugging synchronization behavior
+- refining application state management
+- reviewing TypeScript boundaries
+
+---
+
+### Moving Beyond Firebase Studio
+
+After the Firebase Studio phase of the hackathon, the project was **moved onto my local development environment**.
+
+I then continued working directly on the project from my own machine to:
+
+- resolve remaining implementation issues
+- debug Firebase conflicts
+- verify the correct Firebase project configuration
+- review authentication behavior
+- improve local-to-cloud synchronization
+- refine the user interface
+- audit the project before public release
+- prepare Git and GitHub version control
+- review public-repository security
+- configure Firebase security
+- deploy the application through Netlify
+- bring the hackathon prototype to a publicly accessible live version
+
+This transition was important because it changed Spendy from an AI-assisted hackathon prototype into a project that could be independently maintained, reviewed, version-controlled, deployed, and showcased from my local development environment.
+
+---
+
+## ⚠️ Limitations
+
+Spendy remains a hackathon-originated project and has several areas that can be expanded.
+
+### Fixed Category Set
+
+The current implementation contains six predefined categories:
+
+```
+Food
+Travel
+Bills
+Shopping
+Salary
+Other
+```
+
+Future versions can support:
+
+- more predefined categories
+- custom user-created categories
+- customizable category icons
+- category colors
+- category-specific budgets
+
+---
+
+### Single-Wallet Model
+
+Spendy currently treats financial activity as one combined financial balance.
+
+Future versions could support multiple wallets such as:
+
+- Cash
+- Bank accounts
+- Easypaisa
+- JazzCash
+- Credit cards
+- Savings accounts
+- Multiple personal wallets
+
+---
+
+### Web-Based Availability
+
+The currently deployed Spendy version is a web application.
+
+An internet connection is therefore required to initially access:
+
+```
+https://spendy-expense-tracker.netlify.app
+```
+
+Browser-Local Mode stores transaction data locally once the application is being used, but this should not be confused with a fully offline-installed application.
+
+A future native Android, iOS, desktop, or suitable PWA implementation could provide true offline availability.
+
+---
+
+### Static Comparison Metric
+
+Some month-over-month comparison indicators currently use placeholder values rather than fully calculated historical comparisons.
+
+This can be expanded into real financial trend analysis.
+
+---
+
+### AI Integration
+
+Genkit and Gemini infrastructure exists as an experimental foundation, but AI-driven financial recommendations are not currently exposed as a production user feature.
+
+---
+
+### No Custom Budgets Yet
+
+Users cannot currently define:
+
+- monthly category budgets
+- spending caps
+- financial goals
+- savings targets
+- budget alerts
+
+These are potential future improvements.
+
+---
+
+## 🗺 Roadmap
+
+Potential future improvements include:
+
+- Custom transaction categories
+- Additional built-in categories
+- Monthly budgets
+- Category spending limits
+- Multiple wallets
+- Multiple bank accounts
+- Easypaisa / JazzCash tracking
+- CSV transaction export
+- PDF financial reports
+- Advanced historical analytics
+- Real month-over-month comparisons
+- AI-assisted spending insights
+- Personalized financial recommendations
+- Recurring transaction detection
+- Expense reminders
+- Mobile application version
+- Full offline native operation
+- Notification-based transaction detection
+- Improved financial automation
+- Enhanced Firebase synchronization controls
+
+---
+
+## 🌐 Deployment
+
+Spendy is deployed publicly using **Netlify**.
+
+### Live Application
+
+👉 [**Open Spendy Live**](https://spendy-expense-tracker.netlify.app)
+
+The production deployment is connected directly to the GitHub repository.
+
+```
+Local Development
+        ↓
+Git
+        ↓
+GitHub
+        ↓
+Netlify
+        ↓
+npm install
+        ↓
+npm run build
+        ↓
+Next.js Runtime
+        ↓
+Production Website
+```
+
+Future pushes to the configured production branch can automatically trigger new Netlify deployments.
+
+---
+
+## 🔐 Security & Privacy
+
+Spendy supports two storage approaches.
+
+### Browser-Local Mode
+
+Financial records remain inside the user's browser storage unless the user explicitly chooses cloud synchronization.
+
+### Firebase Cloud Mode
+
+Authenticated cloud records are stored under user-specific Firestore paths.
+
+The Firebase implementation uses:
+
+- Firebase Authentication
+- Google Sign-In
+- Firestore Security Rules
+- user-specific Firebase UIDs
+- API-restricted Firebase browser configuration
+
+No service-account private key files are included in this repository.
+
+---
+
+## 👨‍💻 Author & Credits
+
+### Ahmad Ali
+
+**Team Leader — Team A²**
+
+**Developer — Spendy**
+
+My work on Spendy included:
+
+- project concept development
+- hackathon implementation
+- UI refinement
+- financial workflow design
+- Next.js application architecture
+- transaction-management implementation
+- local browser storage workflow
+- Firebase integration
+- Google Authentication integration
+- local-to-cloud synchronization
+- Firebase configuration review
+- debugging and technical refinement
+- post-Firebase-Studio development
+- Git repository preparation
+- GitHub publication
+- security review
+- Netlify deployment
+- project documentation and portfolio preparation
+
+Built for:
+
+**National Agentic AI Hackathon 2025 — Track 2**
+
+### Team
+
+**Team A²**
+
+> Spendy began as an AI-assisted hackathon prototype using Firebase Studio. After the Firebase Studio phase, the project was transferred to my local development environment, where I continued debugging, refining, reviewing, version-controlling, securing, and deploying the application.
+
+---
+
+## 📄 License
+
+This project currently has **no explicit open-source license**.
+
+All rights are reserved by the project authors unless a license is added in a future release.
